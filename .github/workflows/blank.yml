@@ -1,6 +1,7 @@
 name: Reusable workflow
 
 on:
+  push:
   workflow_call:
     # Map the workflow outputs to job outputs
     outputs:
@@ -19,6 +20,6 @@ jobs:
       
     steps:
       - id: step1
-        run: echo "ACCESSID=${{ secrets.ACCESS_ID}}" >> $GITHUB_OUTPUT
+        run: echo "ACCESSID=${{secrets.ACCESS_ID}}" >> $GITHUB_OUTPUT
      
   
