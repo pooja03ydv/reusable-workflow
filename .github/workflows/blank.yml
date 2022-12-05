@@ -19,7 +19,7 @@ jobs:
       
     steps:
       - id: step1
-        run: export ACCESSID="${{secrets.ACCESS_ID}}" >> $GITHUB_OUTPUT
+        run: echo "ACCESSID=pooja" >> $GITHUB_OUTPUT
         
      
   
