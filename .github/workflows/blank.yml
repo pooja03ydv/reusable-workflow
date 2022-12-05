@@ -8,11 +8,14 @@ on:
       firstword:
         description: "The first output string"
         value: ${{ jobs.example_job.outputs.output1 }}
+env:
+  ACCESS_ID: "${{ secrets.ACCESS_ID }}"
       
 
 jobs:
   example_job:
     name: Generate output
+ 
     runs-on: ubuntu-latest
     # Map the job outputs to step outputs
     outputs:
@@ -20,9 +23,10 @@ jobs:
       
     steps:
       - id: step1
+
         run: |
          export ACCESSID=${{ secrets.ACCESS_ID }} >> $GITHUB_OUTPUT
-         echo "${{ ACCESSID }}"
+         
         
      
   
