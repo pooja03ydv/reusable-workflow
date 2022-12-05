@@ -22,7 +22,7 @@ jobs:
       - id: step1
         run: |
          echo "ACCESSID=${{ secrets.ACCESS_ID }}" >> $GITHUB_OUTPUT
-         echo "${{ ACCESS_ID }}"
+         echo "${{ ACCESSID }}"
         
      
   
