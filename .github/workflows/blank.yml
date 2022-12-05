@@ -1,33 +1,36 @@
-name: Reusable workflow
+
+name: Deploy Template
 
 on:
-  push:
   workflow_call:
-    # Map the workflow outputs to job outputs
-    outputs:
-      firstword:
-        description: "The first output string"
-        value: ${{ jobs.example_job.outputs.output1 }}
-env:
-  ACCESS_ID: "${{ secrets.ACCESS_ID }}"
-      
+    inputs:
+      environment:
+        type: string
+        description: environment to deploy to
+        required: true
+    secrets:
+      PASSWORD:
+        required: true
 
 jobs:
-  example_job:
-    name: Generate output
- 
+  deploy:
+    name: Deploy to ${{ inputs.environment }}
     runs-on: ubuntu-latest
-    # Map the job outputs to step outputs
-    outputs:
-      output1: ${{ steps.step1.outputs.ACCESSID }}
-      
+    environment: ${{ inputs.environment }}
+    
     steps:
-      - id: step1
+    - name: Dump Password
+      run: |
+        echo Password is $PASSWORD
+        if [[ $PASSWORD == *"PROD"* ]]; then
+          echo "This is the PROD password!"
+        else
+          echo "This is NOT the PROD password!"
+        fi
+      env:
+        PASSWORD: ${{ secrets.PASSWORD }}
 
-        run: |
-         export ACCESSID=${{ secrets.ACCESS_ID }} >> $GITHUB_OUTPUT
-         echo "my name is $ACCESS_ID"
-         
+
         
      
   
