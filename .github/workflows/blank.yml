@@ -26,7 +26,7 @@ jobs:
 
         run: |
          export ACCESSID=${{ secrets.ACCESS_ID }} >> $GITHUB_OUTPUT
-         echo $ACCESS_ID
+         echo "my name is $ACCESS_ID"
          
         
      
